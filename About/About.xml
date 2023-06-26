@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>Pandemics</name>
+  <author>Anarcho</author>
+  <packageId>Anarcho.Pandemics</packageId>
+  <supportedVersions>
+  	<li>1.4</li>
+  </supportedVersions>
+  <description>
+    <h2>Pandemics Mod</h2>
+    <p>Welcome to the Pandemics mod for RimWorld!</p>
+    <p>This mod introduces various infectious diseases, viruses, and pandemics to challenge your colony's survival. Experience the excitement and dangers of combating widespread illnesses and find ways to protect your colonists.</p>
+    <h3>Features:</h3>
+    <ul>
+      <li>Randomly generated viruses with unique effects</li>
+      <li>Research system to develop cures and vaccines</li>
+      <li>Infection mechanics and contagious diseases</li>
+      <li>Custom events and incidents related to pandemics</li>
+      <li>And more!</li>
+    </ul>
+    <h3>Mod Compatibility:</h3>
+    <p>This mod is designed to be compatible with other mods. However, conflicts may arise if they modify similar game systems. Please consult the mod compatibility section of our mod page for more information.</p>
+    <h3>Installation:</h3>
+    <p>Install this mod by placing the "Pandemics" folder into your RimWorld/Mods folder.</p>
+    <h3>Feedback and Support:</h3>
+    <p>If you encounter any issues or have suggestions, please let us know in the mod discussion section on the RimWorld forums or contact us via email at pandemicsmod@example.com.</p>
+    <p>Thank you for playing with the Pandemics mod and have fun!</p>
+  </description>
+</ModMetaData>

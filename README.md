@@ -1,1 +1,2 @@
 # Pandemics
+A pandemic mod.

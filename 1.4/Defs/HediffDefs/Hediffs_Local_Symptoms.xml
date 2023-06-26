@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HediffDef ParentName="InfectionBase">
+  <defName>TemplateHediffDef</defName>
+  <label>Template Hediff</label>
+  <description>This is a template Hediff.</description>
+  <stages>
+    <li>
+      <label>Stage 0</label>
+      <minSeverity>0</minSeverity>
+      <maxSeverity>0.25</maxSeverity>
+      <!-- Add more properties for Stage 0 as needed -->
+    </li>
+    <li>
+      <label>Stage 1</label>
+      <minSeverity>0.25</minSeverity>
+      <maxSeverity>0.5</maxSeverity>
+      <!-- Add more properties for Stage 1 as needed -->
+    </li>
+    <li>
+      <label>Stage 2</label>
+      <minSeverity>0.5</minSeverity>
+      <maxSeverity>0.75</maxSeverity>
+      <!-- Add more properties for Stage 2 as needed -->
+    </li>
+    <li>
+      <label>Stage 3</label>
+      <minSeverity>0.75</minSeverity>
+      <maxSeverity>1</maxSeverity>
+      <!-- Add more properties for Stage 3 as needed -->
+    </li>
+  </stages>
+  <!-- Add more properties for the template Hediff as needed -->
+</HediffDef>
