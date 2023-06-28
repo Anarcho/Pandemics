@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+    <HediffDef Name="SymptomBase" Abstract="True">
+        <hediffClass>Pandemics.Hediff_Symptom</hediffClass>
+        <defName>Symptom</defName>
+        <label>symptom</label>
+    </HediffDef>
+
+    <HediffDef ParentName="SymptomBase">
+        <defName>Pandemic_Headache</defName>
+        <label>Headache</label>
+        <description>A persistant headache that causes discomfort and reduces productivity.</description>
+        <stages>
+            <li>
+                <label>Mild Headache</label>
+                <minSeverity>0.4</minSeverity>
+            </li>
+            <li>
+                <label>Moderate Headache</label>
+                <minSeverity>0.7</minSeverity>
+            </li>
+            <li>
+                <label>Severe Headache</label>
+                <minSeverity>0.9</minSeverity>
+            </li>
+        </stages>
+        <modExtensions>
+            <li Class="Pandemics.ExentededHediffStages">
+                <descriptions>
+                <li>
+                    <Label>Stage 01</Label>
+                    <Description>Stage 1 Description</Description>
+                </li>
+                </descriptions>
+            </li>
+        </modExtensions>
+    </HediffDef>
+</Defs>

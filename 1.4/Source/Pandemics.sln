@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.5.33516.290
+VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pandemics", "Pandemics.csproj", "{B9C37C1E-B83E-46D5-B80F-4E57FED39350}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pandemics", "Pandemics.csproj", "{87AF17BD-56F3-4846-8F45-B0618BD9E376}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B9C37C1E-B83E-46D5-B80F-4E57FED39350}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B9C37C1E-B83E-46D5-B80F-4E57FED39350}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B9C37C1E-B83E-46D5-B80F-4E57FED39350}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B9C37C1E-B83E-46D5-B80F-4E57FED39350}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87AF17BD-56F3-4846-8F45-B0618BD9E376}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87AF17BD-56F3-4846-8F45-B0618BD9E376}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87AF17BD-56F3-4846-8F45-B0618BD9E376}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87AF17BD-56F3-4846-8F45-B0618BD9E376}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {71543DC5-2AF9-4190-B070-E5D2A21EB893}
+		SolutionGuid = {EF7ABAA8-EFF4-459D-94A5-AB3562E80EF5}
 	EndGlobalSection
 EndGlobal
