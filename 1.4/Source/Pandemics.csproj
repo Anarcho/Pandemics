@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -41,12 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HarmonyPatches\HarmonyInit.cs" />
-    <Compile Include="HarmonyPatches\HediffDef_Description_Patch.cs" />
-    <Compile Include="Hediffs\HediffStageDescriptions.cs" />
-    <Compile Include="Hediffs\Hediff_Symptom.cs" />
-    <Compile Include="ModExtensions\HediffStageExtensions.cs" />
-    <Compile Include="Hediffs\Hediff_Symptom.cs" />
+    <Compile Include="Harmony\HarmonyInit.cs" />
+    <Compile Include="Virus\HediffCompProperties_SocialInteractionTransmitter.cs" />
+    <Compile Include="Virus\HediffComp_SocialInteractionTransmitter.cs" />
+    <Compile Include="Virus\HediffGiver_Random_Symptom.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

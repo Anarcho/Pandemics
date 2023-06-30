@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+    <HediffDef ParentName="DiseaseBase">
+        <defName>Pandemic_Virus_UnknownVirus</defName>
+        <label>unknown virus</label>
+        <labelNoun>virus</labelNoun>
+        <description>An unidentified pathogen that has not yet been studied or classified by medical professionals. Its origins, mode of transmission, and potential long-term effects remain a mystery.</description>
+        <hediffClass>HediffWithComps</hediffClass>
+        <comps>
+            <li Class="HediffCompProperties_Discoverable">
+                <sendLetterWhenDiscovered>true</sendLetterWhenDiscovered>
+            </li>
+            <li Class= "Pandemics.HediffCompProperties_SocialInteractionTransmitter">
+                <transmitChance>0.5</transmitChance>
+                <transmitSeverityFactor>0.8</transmitSeverityFactor>
+                <maxDistToPawnToReceiveTransmission>5</maxDistToPawnToReceiveTransmission>
+            </li>
+        </comps>
+        <stages>
+            <li>
+                <label>minor</label>
+                <minSeverity>0.1</minSeverity>
+                <hediffGivers>
+                    <li Class="Pandemics.HediffGiver_Random_Symptom">
+                        <hediff>Flu</hediff>
+                        <mtbDays>1</mtbDays>
+                    </li>
+                </hediffGivers>
+            </li>
+            <li>
+                <label>Moderate</label>
+                <minSeverity>0.4</minSeverity>
+                <painOffset>0.08</painOffset>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>-0.05</offset>
+                    </li>
+                </capMods>
+            </li>
+            <li>
+                <label>Severe</label>
+                <minSeverity>0.7</minSeverity>
+                <painOffset>0.12</painOffset>
+                <lifeThreatening>true</lifeThreatening>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <setMax>0.1</setMax>
+                    </li>
+                    <li>
+                        <capacity>Breathing</capacity>
+                        <offset>-0.05</offset>
+                    </li>
+                </capMods>
+            </li>
+        </stages>
+    </HediffDef>
+</Defs>

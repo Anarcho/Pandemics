@@ -1,38 +1,95 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Defs>
-    <HediffDef Name="SymptomBase" Abstract="True">
-        <hediffClass>Pandemics.Hediff_Symptom</hediffClass>
-        <defName>Symptom</defName>
-        <label>symptom</label>
-    </HediffDef>
-
-    <HediffDef ParentName="SymptomBase">
-        <defName>Pandemic_Headache</defName>
-        <label>Headache</label>
-        <description>A persistant headache that causes discomfort and reduces productivity.</description>
+    <HediffDef ParentName="InfectionBase">
+        <defName>Pandemic_Minor_Fatigue</defName>
+        <label>Fatigue</label>
+        <description>A persistent feeling of tiredness and weakness. Daily activities become more challenging, and productivity may decrease as a result.</description>
+        <hediffClass>HediffWithComps</hediffClass>
+        <makesSickThought>true</makesSickThought>
+        <tendable>false</tendable>
         <stages>
             <li>
-                <label>Mild Headache</label>
-                <minSeverity>0.4</minSeverity>
-            </li>
-            <li>
-                <label>Moderate Headache</label>
-                <minSeverity>0.7</minSeverity>
-            </li>
-            <li>
-                <label>Severe Headache</label>
-                <minSeverity>0.9</minSeverity>
+                <painOffset>0.2</painOffset>
+                <statOffsets>
+                    <RestFallRateFactor>1</RestFallRateFactor>
+                </statOffsets>
+                <capMods>
+                    <li>
+                        <capacity>Manipulation</capacity>
+                        <offset>-0.3</offset>
+                    </li>
+                    <li>
+                        <capacity>Moving</capacity>
+                        <offset>-0.3</offset>
+                    </li>
+                </capMods>
             </li>
         </stages>
-        <modExtensions>
-            <li Class="Pandemics.ExentededHediffStages">
-                <descriptions>
-                <li>
-                    <Label>Stage 01</Label>
-                    <Description>Stage 1 Description</Description>
-                </li>
-                </descriptions>
+    </HediffDef>
+    <HediffDef ParentName="InfectionBase">
+        <defName>Pandemic_Minor_Headache</defName>
+        <label>Headache</label>
+        <description>A persistent, mild headache plagues the infected individual. It can range from a dull ache to occasional sharp pains, causing discomfort and difficulty in concentration.</description>
+        <hediffClass>HediffWithComps</hediffClass>
+        <makesSickThought>true</makesSickThought>
+        <tendable>true</tendable>
+        <stages>
+            <li>
+                <painOffset>0.3</painOffset>
+                <capMods>
+                    <li>
+                        <capacity>Hearing</capacity>
+                        <offset>0.95</offset>
+                    </li>
+                    <li>
+                        <capacity>Sight</capacity>
+                        <offset>-0.05</offset>
+                    </li>
+                    <li>
+                        <capacity>Moving</capacity>
+                        <offset>-0.05</offset>
+                    </li>
+                </capMods>
             </li>
-        </modExtensions>
+        </stages>
+        <comps>
+            <li Class="HediffCompProperties_TendDuration">
+                <baseTendDurationHours>36</baseTendDurationHours>
+                <disappearsAtTotalTendQuality>2</disappearsAtTotalTendQuality>
+            </li>
+        </comps>
+    </HediffDef>
+    <HediffDef ParentName="InfectionBase">
+        <defName>Pandemic_Minor_Nausea</defName>
+        <label>Nausea</label>
+        <description>The infected individual experiences intermittent waves of nausea, leading to a general feeling of queasiness. Occasional bouts of vomiting or a constant upset stomach sensation may occur.</description>
+        <hediffClass>HediffWithComps</hediffClass>
+        <makesSickThought>true</makesSickThought>
+        <tendable>true</tendable>
+        <stages>
+            <li>
+                <painOffset>0.1</painOffset>
+                <vomitMtbDays>2.5</vomitMtbDays>
+                <statOffsets>
+                    <RestFallRateFactor>1.1</RestFallRateFactor>
+                </statOffsets>
+                <capMods>
+                    <li>
+                        <capacity>Breathing</capacity>
+                        <offset>0.8</offset>
+                    </li>
+                    <li>
+                        <capacity>Eating</capacity>
+                        <postFactor>0.5</postFactor>
+                    </li>
+                </capMods>
+            </li>
+        </stages>
+        <comps>
+            <li Class="HediffCompProperties_TendDuration">
+                <baseTendDurationHours>24</baseTendDurationHours>
+                <disappearsAtTotalTendQuality>2</disappearsAtTotalTendQuality>
+            </li>
+        </comps>
     </HediffDef>
 </Defs>
