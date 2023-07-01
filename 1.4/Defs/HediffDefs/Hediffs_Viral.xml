@@ -10,10 +10,12 @@
             <li Class="HediffCompProperties_Discoverable">
                 <sendLetterWhenDiscovered>true</sendLetterWhenDiscovered>
             </li>
-            <li Class= "Pandemics.HediffCompProperties_SocialInteractionTransmitter">
-                <transmitChance>0.5</transmitChance>
+            <li Class= "Pandemics.HediffCompProperties_SocialTransmitter">
+                <transmitChance>0.1</transmitChance>
                 <transmitSeverityFactor>0.8</transmitSeverityFactor>
-                <maxDistToPawnToReceiveTransmission>5</maxDistToPawnToReceiveTransmission>
+                <maxDistToPawnToReceiveTransmission>1</maxDistToPawnToReceiveTransmission>
+                <hashInterval>100</hashInterval>
+                <interactionCooldown>10</interactionCooldown>
             </li>
         </comps>
         <stages>
