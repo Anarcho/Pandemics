@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ThingDef>
+    <defName>VirusResearchBench</defName>
+    <label>Virus Research Bench</label>
+    <description>A specialized bench used for researching viruses.</description>
+    <category>Buildings</category>
+    <thingClass>Building_WorkTable</thingClass>
+    <graphicData>
+      <texPath>Things/Building/Production/ResearchBenchSimple</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <shaderType>CutoutComplex</shaderType>
+      <drawSize>(5,4)</drawSize>
+      <damageData>
+        <cornerTL>Damage/Corner</cornerTL>
+        <cornerTR>Damage/Corner</cornerTR>
+        <cornerBL>Damage/Corner</cornerBL>
+        <cornerBR>Damage/Corner</cornerBR>
+      </damageData>
+    </graphicData>
+    <building>
+        <researchPrerequisites>
+            <li>MicroelectronicsBasics</li>
+        </researchPrerequisites>
+        <researchViewX>3</researchViewX>
+        <researchViewY>3</researchViewY>
+        <powerConsumption>500</powerConsumption>
+        <specialDisplayRadius>3.9</specialDisplayRadius>
+    </building>
+    <comps>
+        <li>
+            <compClass>CompAssignableToPawn</compClass>
+        </li>
+        <li>
+            <compClass>CompPowerTrader</compClass>
+        </li>
+        <li>
+            <compClass>CompRefuelable</compClass>
+        </li>
+        <li>
+            <compClass>CompWorkbench</compClass>
+        </li>
+    </comps>
+    <recipes>
+        <li>
+            <def>RandomVirusJob</def>
+        </li>
+    </recipes>
+</ThingDef>

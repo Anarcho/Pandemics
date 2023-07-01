@@ -42,11 +42,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Harmony\HarmonyInit.cs" />
-    <Compile Include="Virus\HediffCompProperties_AreaTransmitter.cs" />
-    <Compile Include="Virus\HediffCompProperties_SocialTransmitter.cs" />
-    <Compile Include="Virus\HediffComp_AreaTransmitter.cs" />
-    <Compile Include="Virus\HediffComp_SocialTransmitter.cs" />
-    <Compile Include="Virus\HediffGiver_Random_Symptom.cs" />
+    <Compile Include="VirusTransmissionComps\HediffCompProperties_AreaTransmitter.cs" />
+    <Compile Include="VirusTransmissionComps\HediffCompProperties_SocialTransmitter.cs" />
+    <Compile Include="VirusTransmissionComps\HediffComp_AreaTransmitter.cs" />
+    <Compile Include="VirusTransmissionComps\HediffComp_SocialTransmitter.cs" />
+    <Compile Include="VirusTransmissionComps\HediffGiver_Random_Symptom.cs" />
+    <Compile Include="JobDriver\JobDriver_ResearchVirus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
