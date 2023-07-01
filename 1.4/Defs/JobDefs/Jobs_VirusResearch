@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <JobDef>
+    <defName>ResearchVirus</defName>
+    <driverClass>Pandemics.JobDriver_ResearchVirus</driverClass>
+    <label>Research Virus</label>
+    <description>Research the virus to understand its stages and associated sodium_crypto_secretstream_xchacha20poly1305_push.</description>
+    <reportString>Researching the virus.</reportString>
+  </JobDef>
+</Defs>
