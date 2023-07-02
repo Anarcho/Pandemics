@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <WorkTypeDef>
+        <defName>VirusResearch</defName>
+        <labelShort>virus research</labelShort>
+        <pawnLabel>Virus Researcher</pawnLabel>
+        <gerundLabel>researching viruses</gerundLabel>
+        <description>Perform virus research to study and analyze unknown viruses.</description>
+        <verb>Research viruses at</verb>
+        <naturalPriority>100</naturalPriority>
+        <disabledForSlaves>true</disabledForSlaves>
+        <relevantSkills>
+            <li>Intellectual</li>
+        </relevantSkills>
+        <workTags>
+            <li>Intellectual</li>
+            <li>Commoner</li>
+            <li>AllWork</li>
+        </workTags>
+    </WorkTypeDef>
+</Defs>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <WorkGiverDef>
+        <defName>VirusResearchWorkGiver</defName>
+        <label>Research Viruses</label>
+        <giverClass>Pandemics.WorkGiver_VirusResearch</giverClass>
+        <workType>VirusResearch</workType>
+        <verb>research viruses</verb>
+        <gerund>researching viruses at</gerund>
+        <priorityInType>120</priorityInType>
+        <requiredCapacities>
+            <li>Manipulation</li>
+        </requiredCapacities>
+        <canBeDoneByMechs>false</canBeDoneByMechs>
+    </WorkGiverDef>
+</Defs>
