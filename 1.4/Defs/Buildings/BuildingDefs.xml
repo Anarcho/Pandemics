@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Defs>
     <ThingDef ParentName="BenchBase">
-        <defName>Pandemic_ResearchBench</defName>
+        <defName>VirusResearchBench</defName>
         <label>Virus Research Bench</label>
-        <description>A specialized bench used for researching viruses and studying pandemics.</description>
+        <description>A specialized bench for researching unknown viruses and finding cures.</description>
         <thingClass>Pandemics.Building_VirusResearchBench</thingClass>
         <size>(3,2)</size>
         <stuffCategories>

@@ -1,22 +1,22 @@
 ﻿using RimWorld;
 using System.Collections.Generic;
-using System.Linq;
-
 using Verse;
+using System.Linq;
 
 namespace Pandemics
 {
-    public class Building_VirusResearchBench : ThingWithComps
+    public class Building_VirusResearchBench : Building
     {
-        public override string GetInspectString()
+        public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Pawn selPawn)
         {
-            // Add custom inspect string for the virus research bench
-            return base.GetInspectString() + "\n" + "Researching unknown viruses.";
+            foreach (var option in base.GetFloatMenuOptions(selPawn))
+            {
+                yield return option;
+            }
         }
 
         public override IEnumerable<Gizmo> GetGizmos()
         {
-            // Add custom Gizmos for the virus research bench
             foreach (var gizmo in base.GetGizmos())
             {
                 yield return gizmo;
@@ -27,38 +27,36 @@ namespace Pandemics
         {
             base.Tick();
 
-            if (!Spawned)
+            // Check if the research project is finished
+            if (Find.ResearchManager.currentProj?.defName == "Research_UnknownVirus" && Find.ResearchManager.currentProj.IsFinished)
             {
-                return;
-            }
-
-            HediffDef virusHediffDef = DefDatabase<HediffDef>.GetNamed("Pandemic_Virus_UnknownVirus");
-
-            // Check if any pawns are currently assigned to the virus research work type
-            var assignedPawns = Find.CurrentMap.mapPawns.FreeColonistsSpawned.Where(p => p.workSettings?.GetPriority(WorkTypeDefOf.Research) > 0);
-            foreach (var pawn in assignedPawns)
-            {
-                // Check if the pawn has the "Pandemic_Virus_UnknownVirus" hediff
-                var unknownVirusHediff = pawn.health.hediffSet.GetFirstHediffOfDef(virusHediffDef);
-                if (unknownVirusHediff != null)
+                // Replace the unknown virus with the known virus for affected pawns
+                foreach (Pawn pawn in PawnsAffectedByUnknownVirus())
                 {
-                    // Generate a new unique HediffDef for the virus
-                    var uniqueSuffix = GenText.StableStringHash(pawn.GetUniqueLoadID());
-                    var newVirusHediffDef = new HediffDef
-                    {
-                        defName = "Pandemic_Virus_" + uniqueSuffix,
-                        label = "COV-19",
-                        // Add any other properties you want to set for the new HediffDef
-                    };
-
-                    // Replace the existing hediff with the newly generated HediffDef
-                   pawn.health.RemoveHediff(unknownVirusHediff);
-
-                // Add the new hediff to the pawn
-                var newVirusHediff = HediffMaker.MakeHediff(newVirusHediffDef, pawn);
-                pawn.health.AddHediff(newVirusHediff);
+                    ReplaceUnknownVirusHediff(pawn);
                 }
             }
+        }
+
+        private IEnumerable<Pawn> PawnsAffectedByUnknownVirus()
+        {
+            return Find.CurrentMap.mapPawns.AllPawns.Where(pawn => pawn.health.hediffSet.HasHediff(DefDatabase<HediffDef>.AllDefs
+                .FirstOrDefault(def => def.defName.StartsWith("Pandemic_Virus") &&
+                pawn.health.hediffSet.HasHediff(def))));
+        }
+
+        private void ReplaceUnknownVirusHediff(Pawn pawn)
+        {
+            // Remove the unknown virus Hediff from the pawn's hediff set
+            Hediff unknownVirusHediff = pawn.health.hediffSet.GetFirstHediffOfDef(DefDatabase<HediffDef>.AllDefs.FirstOrDefault(def => def.defName.StartsWith("Pandemic_Virus") && pawn.health.hediffSet.HasHediff(def)));
+            if (unknownVirusHediff != null)
+            {
+                pawn.health.RemoveHediff(unknownVirusHediff);
+            }
+
+            // Add the known virus Hediff to the pawn's hediff set
+            Hediff knownVirusHediff = HediffMaker.MakeHediff(DefDatabase<HediffDef>.AllDefs.FirstOrDefault(def => def.defName.StartsWith("Pandemic_Virus") && pawn.health.hediffSet.HasHediff(def)), pawn);
+            pawn.health.AddHediff(knownVirusHediff);
         }
     }
 }

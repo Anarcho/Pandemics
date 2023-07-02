@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <ResearchProjectDef>
+        <defName>Research_UnknownVirus</defName>
+        <label>Research: Unknown Virus</label>
+        <description>Conduct research to uncover the secrets of the unknown virus.</description>
+        <techLevel>Industrial</techLevel>
+        <baseCost>1000</baseCost>
+        <researchViewX>11.00</researchViewX>
+        <researchViewY>5.40</researchViewY>
+        <!-- Remove the requiredResearch tag to remove any prerequisite research -->
+        <!-- <requiredResearch>
+        <li>GeneProcessor</li>
+    </requiredResearch> -->
+        <!-- Remove the prerequisites tag to remove any additional conditions -->
+        <!-- <prerequisites>
+        <li>UnknownVirusContracted</li>
+    </prerequisites> -->
+    </ResearchProjectDef>
+</Defs>
