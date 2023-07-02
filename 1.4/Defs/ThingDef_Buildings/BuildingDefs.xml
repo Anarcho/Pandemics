@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+    <ThingDef ParentName="BuildingBase">
+        <defName>Pandemics_Building_VirusLab</defName>
+        <label>Virus Lab Bench</label>
+        <description>A specialized lab bench for analyzing unknown viruses.</description>
+        <thingClass>Pandemics.Building_VirusLab</thingClass>
+        <graphicData>
+            <texPath>Things/Building/Production/ResearchBenchSimple</texPath>
+            <graphicClass>Graphic_Multi</graphicClass>
+            <shaderType>CutoutComplex</shaderType>
+            <drawSize>(3,2)</drawSize>
+            <shadowData>
+                <volume>(1.95,0.5,1.3)</volume>
+            </shadowData>
+            <damageData>
+                <rect>(0.3,0.1,2.4,1.8)</rect>
+            </damageData>
+        </graphicData>
+        <stuffCategories>
+            <li>Stony</li>
+        </stuffCategories>
+        <costStuffCount>150</costStuffCount>
+        <costList>
+            <Steel>20</Steel>
+            <ComponentIndustrial>2</ComponentIndustrial>
+        </costList>
+        <altitudeLayer>Building</altitudeLayer>
+        <useHitPoints>true</useHitPoints>
+        <statBases>
+            <WorkToBuild>4500</WorkToBuild>
+            <MaxHitPoints>300</MaxHitPoints>
+            <Cleanliness>-20</Cleanliness>
+            <Beauty>-10</Beauty>
+        </statBases>
+        <size>(3,2)</size>
+        <designationCategory>Production</designationCategory>
+        <fillPercent>1</fillPercent>
+        <passability>Impassable</passability>
+        <hasInteractionCell>true</hasInteractionCell>
+        <interactionCellOffset>(0,0,-1)</interactionCellOffset>
+        <interactionCellIcon>DiningChair</interactionCellIcon>
+        <surfaceType>Item</surfaceType>
+        <canOverlapZones>false</canOverlapZones>
+        <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+        <constructionSkillPrerequisite>4</constructionSkillPrerequisite>
+        <building>
+            <spawnedConceptLearnOpportunity>BillsTab</spawnedConceptLearnOpportunity>
+            <heatPerTickWhileWorking>0.32</heatPerTickWhileWorking>
+            <forceShowRoomStats>true</forceShowRoomStats>
+            <buildingTags>
+                <li>Production</li>
+            </buildingTags>
+            <paintable>true</paintable>
+        </building>
+        <placeWorkers>
+            <li>PlaceWorker_PreventInteractionSpotOverlap</li>
+        </placeWorkers>
+        <designationHotKey>Misc5</designationHotKey>
+        <researchPrerequisites>
+            <li>Electricity</li>
+        </researchPrerequisites>
+    </ThingDef>
+</Defs>

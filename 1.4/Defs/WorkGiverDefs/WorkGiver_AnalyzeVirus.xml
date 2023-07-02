@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <WorkGiverDef>
+        <defName>Pandemics_AnalyzeVirus</defName>
+        <workType>Research</workType>
+        <verb>analyzing</verb>
+        <gerund>analyzing unknown viruses</gerund>
+        <workTags>Intellectual</workTags>
+        <giverClass>Pandemics.WorkGiver_AnalyzeVirus</giverClass>
+        <priorityInType>50</priorityInType>
+    </WorkGiverDef>
+</Defs>

@@ -41,15 +41,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Buildings\Building_VirusResearchBench.cs" />
+    <Compile Include="Building_VirusLab.cs" />
+    <Compile Include="DefOf.cs" />
     <Compile Include="Harmony\HarmonyInit.cs" />
-    <Compile Include="Properties\HediffDefOf.cs" />
+    <Compile Include="JobDriver_AnalyzeVirus.cs" />
     <Compile Include="VirusTransmissionComps\HediffCompProperties_AreaTransmitter.cs" />
     <Compile Include="VirusTransmissionComps\HediffCompProperties_SocialTransmitter.cs" />
     <Compile Include="VirusTransmissionComps\HediffComp_AreaTransmitter.cs" />
     <Compile Include="VirusTransmissionComps\HediffComp_SocialTransmitter.cs" />
     <Compile Include="VirusTransmissionComps\HediffGiver_Random_Symptom.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WorkGiver_AnalyzeVirus.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Krafs.Rimworld.Ref">
@@ -59,8 +61,6 @@
       <Version>2.2.2</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Work\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

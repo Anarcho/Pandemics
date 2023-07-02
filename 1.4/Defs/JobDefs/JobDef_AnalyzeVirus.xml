@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <JobDef>
+        <defName>Pandemics_AnalyzeVirus</defName>
+        <driverClass>Pandemics.JobDriver_AnalyzeVirus</driverClass>
+        <reportString>Analyzing virus</reportString>
+    </JobDef>
+</Defs>
