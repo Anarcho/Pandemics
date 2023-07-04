@@ -32,6 +32,7 @@
             <MaxHitPoints>300</MaxHitPoints>
             <Cleanliness>-20</Cleanliness>
             <Beauty>-10</Beauty>
+            <ResearchSpeedFactor>1</ResearchSpeedFactor>
         </statBases>
         <size>(3,2)</size>
         <designationCategory>Production</designationCategory>
