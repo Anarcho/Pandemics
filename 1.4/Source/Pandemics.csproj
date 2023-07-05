@@ -45,6 +45,7 @@
     <Compile Include="DefOf.cs" />
     <Compile Include="Harmony\HarmonyInit.cs" />
     <Compile Include="JobDriver_AnalyzeVirus.cs" />
+    <Compile Include="Pandemics.cs" />
     <Compile Include="VirusTransmissionComps\HediffCompProperties_AreaTransmitter.cs" />
     <Compile Include="VirusTransmissionComps\HediffCompProperties_SocialTransmitter.cs" />
     <Compile Include="VirusTransmissionComps\HediffComp_AreaTransmitter.cs" />

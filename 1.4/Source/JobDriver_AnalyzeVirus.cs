@@ -1,5 +1,6 @@
 ﻿using RimWorld;
 using System.Collections.Generic;
+using UnityEngine;
 using Verse;
 using Verse.AI;
 
@@ -8,7 +9,9 @@ namespace Pandemics
     public class JobDriver_AnalyzeVirus : JobDriver
     {
         private float virusAnalysisProgress = 0f; // Current progress of virus analysis
-        private const float AnalysisDuration = 4000f; // Define the duration of the analysis
+        private float AnalysisDuration => PandemicsMod.settings.AnalysisDuration; // Duration of the analysis
+
+        private float PercentageDone = 0f;
 
         private Building_VirusLab VirusLab => (Building_VirusLab)base.TargetThingA;
 
@@ -31,17 +34,25 @@ namespace Pandemics
             // Perform the virus analysis task
             Toil analyzeToil = ToilMaker.MakeToil("MakeNewToils");
 
+            
+
             analyzeToil.tickAction = () =>
             {
                 Pawn actor = analyzeToil.actor;
                 float num = actor.GetStatValue(StatDefOf.ResearchSpeed, true, -1);
                 num *= this.TargetThingA.GetStatValue(StatDefOf.ResearchSpeedFactor, true, -1);
 
-                // Increase the virus analysis progress based on the research speed
+                // Increment the virus analysis progress
                 virusAnalysisProgress += num;
 
+                Log.Message("Progress = " + virusAnalysisProgress);
+                Log.Message("Duration = " + AnalysisDuration);
+                Log.Message("Percentage Done = " + (virusAnalysisProgress / AnalysisDuration) * 100f);
+
+                PercentageDone = (virusAnalysisProgress / AnalysisDuration) * 100;
+
                 // Check if the analysis is complete
-                if (virusAnalysisProgress >= 100f)
+                if (virusAnalysisProgress >= AnalysisDuration)
                 {
                     // Reset the progress for the next analysis
                     virusAnalysisProgress = 0f;
@@ -64,9 +75,9 @@ namespace Pandemics
 
             analyzeToil.FailOnCannotTouch(TargetIndex.A, PathEndMode.InteractionCell);
             analyzeToil.WithEffect(EffecterDefOf.Research, TargetIndex.A, null);
-            analyzeToil.WithProgressBar(TargetIndex.A, () => virusAnalysisProgress / 100f, false, -0.5f, false);
+            analyzeToil.WithProgressBar(TargetIndex.A, () => PercentageDone, false, -0.5f, true);
             analyzeToil.defaultCompleteMode = ToilCompleteMode.Delay;
-            analyzeToil.defaultDuration = (int)(AnalysisDuration * GenTicks.TicksPerRealSecond / pawn.GetStatValue(StatDefOf.ResearchSpeed));
+            analyzeToil.defaultDuration = 4000;
 
             yield return analyzeToil;
         }
