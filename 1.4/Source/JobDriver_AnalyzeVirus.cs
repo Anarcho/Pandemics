@@ -47,9 +47,9 @@ namespace Pandemics
 
                 Log.Message("Progress = " + virusAnalysisProgress);
                 Log.Message("Duration = " + AnalysisDuration);
-                Log.Message("Percentage Done = " + (virusAnalysisProgress / AnalysisDuration) * 100f);
+                Log.Message("Percentage Done = " + virusAnalysisProgress / AnalysisDuration);
 
-                PercentageDone = (virusAnalysisProgress / AnalysisDuration) * 100;
+                PercentageDone = virusAnalysisProgress / AnalysisDuration;
 
                 // Check if the analysis is complete
                 if (virusAnalysisProgress >= AnalysisDuration)
@@ -77,7 +77,7 @@ namespace Pandemics
             analyzeToil.WithEffect(EffecterDefOf.Research, TargetIndex.A, null);
             analyzeToil.WithProgressBar(TargetIndex.A, () => PercentageDone, false, -0.5f, true);
             analyzeToil.defaultCompleteMode = ToilCompleteMode.Delay;
-            analyzeToil.defaultDuration = 4000;
+            analyzeToil.defaultDuration = (int)(AnalysisDuration * GenTicks.TicksPerRealSecond / pawn.GetStatValue(StatDefOf.ResearchSpeed));
 
             yield return analyzeToil;
         }
