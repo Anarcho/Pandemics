@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Verse;
 using Verse.AI;
+using System.Text.RegularExpressions;
+using System.Linq;
 
 namespace Pandemics
 {
@@ -23,7 +25,6 @@ namespace Pandemics
             return pawnReserved && benchReserved;
         }
 
-
         protected override IEnumerable<Toil> MakeNewToils()
         {
             this.FailOnDespawnedNullOrForbidden(TargetIndex.A);
@@ -34,8 +35,6 @@ namespace Pandemics
             // Perform the virus analysis task
             Toil analyzeToil = ToilMaker.MakeToil("MakeNewToils");
 
-            
-
             analyzeToil.tickAction = () =>
             {
                 Pawn actor = analyzeToil.actor;
@@ -45,10 +44,6 @@ namespace Pandemics
                 // Increment the virus analysis progress
                 virusAnalysisProgress += num;
 
-                Log.Message("Progress = " + virusAnalysisProgress);
-                Log.Message("Duration = " + AnalysisDuration);
-                Log.Message("Percentage Done = " + virusAnalysisProgress / AnalysisDuration);
-
                 PercentageDone = virusAnalysisProgress / AnalysisDuration;
 
                 // Check if the analysis is complete
@@ -57,19 +52,37 @@ namespace Pandemics
                     // Reset the progress for the next analysis
                     virusAnalysisProgress = 0f;
 
-                    // Perform the finish actions
-                    var pawnsWithUnknownVirus = GetPawnsWithUnknownVirus();
-                    foreach (Pawn pawn in pawnsWithUnknownVirus)
+                    // Get the next unknown virus in numerical order
+                    string nextVirusName = VirusManager.GetNextVirusNumericalOrder();
+                    string nextVirusLabel = VirusManager.GetVirusLabel(nextVirusName);
+
+                    // Create the new HediffDef
+                    List<Pawn> pawnsWithVirus = VirusManager.GetPawnsWithVirus(nextVirusName);
+                    HediffDef newVirusHediff = VirusManager.GenerateUniqueVirusHediff(pawnsWithVirus.FirstOrDefault().health.hediffSet.GetFirstHediffOfDef(PandemicsDefOf.Pandemics_Virus_UnknownVirus));
+
+                    if (!DefDatabase<HediffDef>.AllDefs.Any(def => def.defName == newVirusHediff.defName))
                     {
-                        var unknownVirusHediff = pawn.health.hediffSet.GetFirstHediffOfDef(PandemicsDefOf.Pandemics_Virus_UnknownVirus);
-                        if (unknownVirusHediff != null)
+                        DefDatabase<HediffDef>.Add(newVirusHediff);
+                    }
+
+                    // Perform the finish actions only for the next unknown virus
+                    if (pawnsWithVirus != null && pawnsWithVirus.Count > 0)
+                    {
+                        foreach (Pawn pawn in pawnsWithVirus)
                         {
-                            pawn.health.RemoveHediff(unknownVirusHediff);
-                            pawn.health.AddHediff(PandemicsDefOf.Pandemics_Virus_KnownVirus);
+                            var unknownVirusHediff = pawn.health.hediffSet.GetFirstHediffOfDef(PandemicsDefOf.Pandemics_Virus_UnknownVirus);
+                            if (unknownVirusHediff != null)
+                            {
+                                // Add the new HediffDef to the DefDatabase
+                                pawn.health.RemoveHediff(unknownVirusHediff);
+                                VirusManager.ReplaceVirus(PandemicsDefOf.Pandemics_Virus_UnknownVirus.defName, newVirusHediff.defName);
+                                pawn.health.AddHediff(newVirusHediff);
+                            }
                         }
                     }
 
-                    this.EndJobWith(JobCondition.Succeeded); // Finish the job
+                    // Finish the job
+                    this.EndJobWith(JobCondition.Succeeded);
                 }
             };
 
@@ -82,18 +95,5 @@ namespace Pandemics
             yield return analyzeToil;
         }
 
-        private List<Pawn> GetPawnsWithUnknownVirus()
-        {
-            List<Pawn> pawnsWithUnknownVirus = new List<Pawn>();
-            foreach (Pawn pawn in PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_FreeColonistsAndPrisoners)
-            {
-                var unknownVirusHediff = pawn.health.hediffSet.GetFirstHediffOfDef(PandemicsDefOf.Pandemics_Virus_UnknownVirus);
-                if (unknownVirusHediff != null)
-                {
-                    pawnsWithUnknownVirus.Add(pawn);
-                }
-            }
-            return pawnsWithUnknownVirus;
-        }
     }
 }

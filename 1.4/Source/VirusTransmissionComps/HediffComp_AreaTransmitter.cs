@@ -3,6 +3,18 @@ using Verse;
 
 namespace Pandemics
 {
+    public class HediffCompProperties_AreaTransmitter : HediffCompProperties
+    {
+        public float transmitChance = 0.5f;
+        public float transmitSeverityFactor = 0.8f;
+        public float maxDistToPawnToReceiveTransmission = 5f;
+        public int hashInterval = 100;
+
+        public HediffCompProperties_AreaTransmitter()
+        {
+            compClass = typeof(HediffComp_AreaTransmitter);
+        }
+    }
     public class HediffComp_AreaTransmitter : HediffComp
     {
         public HediffCompProperties_AreaTransmitter Props => (HediffCompProperties_AreaTransmitter)props;
@@ -30,11 +42,17 @@ namespace Pandemics
                             float transmitChance = Props.transmitChance;
                             if (Rand.Chance(transmitChance))
                             {
-                                Hediff newVirusHediff = (Hediff)HediffMaker.MakeHediff(virusHediff.def, receiver);
-                                receiver.health.AddHediff(newVirusHediff, null, null);
+                                if (receiver.health.hediffSet.GetFirstHediffOfDef(virusHediff.def) == null)
+                                {
+                                    Hediff newVirusHediff = (Hediff)HediffMaker.MakeHediff(virusHediff.def, receiver);
 
-                                string letterText = $"{receiver.NameShortColored} has contracted the virus from {parent.pawn.NameShortColored}!";
-                                Find.LetterStack.ReceiveLetter("Virus Transmission", letterText, LetterDefOf.NegativeEvent, parent.pawn);
+                                    receiver.health.AddHediff(newVirusHediff, null, null);
+
+                                    VirusManager.AddPawnToVirus(receiver, virusHediff.def.defName);
+
+                                    string letterText = $"{receiver.NameShortColored} has contracted the virus from {parent.pawn.NameShortColored}!";
+                                    Find.LetterStack.ReceiveLetter("Virus Transmission", letterText, LetterDefOf.NegativeEvent, parent.pawn);
+                                }
                             }
                         }
                     }

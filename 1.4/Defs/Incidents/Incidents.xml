@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <IncidentDef>
+    <defName>Outbreak</defName>
+    <label>Outbreak</label>
+    <workerClass>Pandemics.IncidentWorker_Outbreak</workerClass>
+    <category>ThreatSmall</category>
+    <targetTags>
+      <li>Map_PlayerHome</li>
+    </targetTags>
+    <letterText>An outbreak of an unknown virus has occurred. A colonist has been infected.</letterText>
+    <letterLabel>Outbreak</letterLabel>
+    <letterDef>NegativeEvent</letterDef>
+  </IncidentDef>
+</Defs>

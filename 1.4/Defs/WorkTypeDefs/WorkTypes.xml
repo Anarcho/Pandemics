@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <WorkTypeDef>
+    <defName>Virology</defName>
+    <labelShort>Virology</labelShort>
+    <pawnLabel>Virologist</pawnLabel>
+    <gerundLabel>researching viruses</gerundLabel>
+    <description>Conduct in-depth research on viruses to develop a better understanding of their behavior, transmission, and potential treatments.</description>
+    <verb>Conduct virus research at</verb>
+    <naturalPriority>100</naturalPriority>
+    <disabledForSlaves>true</disabledForSlaves>
+    <relevantSkills>
+      <li>Intellectual</li>
+    </relevantSkills>
+    <workTags>
+      <li>Intellectual</li>
+      <li>Commoner</li>
+      <li>AllWork</li>
+    </workTags>
+  </WorkTypeDef>
+</Defs>

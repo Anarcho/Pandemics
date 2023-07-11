@@ -48,6 +48,5 @@ namespace Pandemics
             base.WriteSettings();
             settings.Write();
         }
-
     }
 }

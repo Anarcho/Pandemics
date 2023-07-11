@@ -1,43 +1,39 @@
 ﻿using RimWorld;
 using System.Collections.Generic;
 using Verse;
+using Verse.AI;
 
 namespace Pandemics
 {
-
-    public class HediffCompProperties_SocialTransmitter : HediffCompProperties
+    public class HediffCompProperties_LovinTransmitted : HediffCompProperties
     {
+        public int hashInterval = 250;
+        public int interactionCooldown = 60000;
         public float transmitChance = 0.5f;
-        public float transmitSeverityFactor = 0.8f;
-        public float maxDistToPawnToReceiveTransmission = 5f;
-        public int hashInterval = 100;
-        public int interactionCooldown;
 
-        public HediffCompProperties_SocialTransmitter()
+        public HediffCompProperties_LovinTransmitted()
         {
-            compClass = typeof(HediffComp_SocialTransmitter);
+            compClass = typeof(HediffComp_LovinTransmitted);
         }
     }
-    public class HediffComp_SocialTransmitter : HediffComp
+    public class HediffComp_LovinTransmitted : HediffComp
     {
-        public HediffCompProperties_SocialTransmitter Props => (HediffCompProperties_SocialTransmitter)props;
+        public HediffCompProperties_LovinTransmitted Props => (HediffCompProperties_LovinTransmitted)props;
 
         private List<InteractionRecord> pastInteractions = new List<InteractionRecord>();
         private int lastCheckedTick = -1;
-        
 
         public override void CompPostTick(ref float severityAdjustment)
         {
             int currentTick = Find.TickManager.TicksGame;
             int hashInterval = Props.hashInterval;
-            // Check if enough ticks have passed since the last execution
+
             if (currentTick > lastCheckedTick + hashInterval)
             {
                 lastCheckedTick = currentTick;
 
                 base.CompPostTick(ref severityAdjustment);
                 Hediff virusHediff = (Hediff)parent;
-
 
                 if (parent.pawn.Spawned && !parent.pawn.Dead)
                 {
@@ -47,19 +43,17 @@ namespace Pandemics
                         {
                             if (receiver.health.hediffSet.GetFirstHediffOfDef(virusHediff.def) == null)
                             {
-                                if (!HasRecentInteraction(parent.pawn, receiver, Props.interactionCooldown))
+                                if (HasRecentLovinJob(receiver))
                                 {
                                     float transmitChance = Props.transmitChance;
                                     if (Rand.Chance(transmitChance))
                                     {
                                         Hediff newVirusHediff = (Hediff)HediffMaker.MakeHediff(virusHediff.def, receiver);
                                         receiver.health.AddHediff(newVirusHediff, null, null);
-                                        VirusManager.AddVirus(receiver, newVirusHediff.def.defName);
-
-                                        string letterText = $"{receiver.NameShortColored} has contracted the virus from {parent.pawn.NameShortColored}!";
+                                        VirusManager.AddPawnToVirus(receiver, virusHediff.def.defName);
+                                        string letterText = $"{receiver.NameShortColored} has contracted the virus from {parent.pawn.NameShortColored} during some lovin!";
                                         Find.LetterStack.ReceiveLetter("Virus Transmission", letterText, LetterDefOf.NegativeEvent, parent.pawn);
 
-                                        // Record the interaction
                                         RecordInteraction(parent.pawn, receiver);
                                     }
                                 }
@@ -74,27 +68,19 @@ namespace Pandemics
         {
             if (receiver == null || receiver.Dead || receiver.IsInvisible() || receiver.health.hediffSet.HasHediff(virusHediff.def))
                 return false;
-
-            float distance = (receiver.Position - parent.pawn.Position).LengthHorizontalSquared;
-            if (distance > Props.maxDistToPawnToReceiveTransmission * Props.maxDistToPawnToReceiveTransmission)
-                return false;
-
             return true;
         }
 
-        private bool HasRecentInteraction(Pawn pawn1, Pawn pawn2, int cooldownTicks)
+        private bool HasRecentLovinJob(Pawn pawn)
         {
-            foreach (InteractionRecord interaction in pastInteractions)
+            Job curJob = pawn.CurJob;
+            if (curJob != null && curJob.def == JobDefOf.Lovin)
             {
-                if ((interaction.Initiator == pawn1 && interaction.Recipient == pawn2 ||
-                     interaction.Initiator == pawn2 && interaction.Recipient == pawn1) &&
-                    (Find.TickManager.TicksGame - interaction.Timestamp) < cooldownTicks)
+                if (curJob.GetTarget(TargetIndex.A).HasThing && curJob.GetTarget(TargetIndex.A).Thing == parent.pawn)
                 {
-                    // Recent interaction occurred
                     return true;
                 }
             }
-            // No recent interaction found
             return false;
         }
 
@@ -110,14 +96,4 @@ namespace Pandemics
             pastInteractions.Add(interaction);
         }
     }
-    
 }
-
-
-
-    
-
-
-
-
-    

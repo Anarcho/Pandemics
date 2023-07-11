@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
     <WorkGiverDef>
-        <defName>Pandemics_AnalyzeVirus</defName>
-        <workType>Research</workType>
+        <defName>AnalyzeVirus</defName>
+        <workType>Virology</workType>
         <verb>analyzing</verb>
         <gerund>analyzing unknown viruses</gerund>
         <workTags>Intellectual</workTags>

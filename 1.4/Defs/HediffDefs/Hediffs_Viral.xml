@@ -5,17 +5,16 @@
         <label>unknown virus</label>
         <labelNoun>virus</labelNoun>
         <description>An unidentified pathogen that has not yet been studied or classified by medical professionals. Its origins, mode of transmission, and potential long-term effects remain a mystery.</description>
-        <hediffClass>HediffWithComps</hediffClass>
+        <hediffClass>Pandemics.Hediff_UnknownVirus</hediffClass>
         <comps>
             <li Class="HediffCompProperties_Discoverable">
                 <sendLetterWhenDiscovered>true</sendLetterWhenDiscovered>
             </li>
-            <li Class= "Pandemics.HediffCompProperties_SocialTransmitter">
+            <li Class="Pandemics.HediffCompProperties_AreaTransmitter">
                 <transmitChance>0.1</transmitChance>
-                <transmitSeverityFactor>0.8</transmitSeverityFactor>
-                <maxDistToPawnToReceiveTransmission>1</maxDistToPawnToReceiveTransmission>
+                <transmitSeverityFactor>0.80</transmitSeverityFactor>
+                <maxDistToPawnToReceiveTransmission>5</maxDistToPawnToReceiveTransmission>
                 <hashInterval>100</hashInterval>
-                <interactionCooldown>10</interactionCooldown>
             </li>
         </comps>
         <stages>
