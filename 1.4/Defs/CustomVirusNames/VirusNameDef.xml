@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-  <ThingDef>
+  <Pandemics.VirusDefNames>
     <defName>VirusNameLibrary</defName>
-    <defClass>Pandemics.VirusNameDef</defClass>
     <prefixes>
       <li>Zyvox</li>
       <li>Xylin</li>
@@ -115,5 +114,5 @@
         <li>Pestilentia</li>
         <li>Virulence</li>
     </suffixes>
-  </ThingDef>
+  </Pandemics.VirusDefNames>
 </Defs>
